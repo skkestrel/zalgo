@@ -123,6 +123,7 @@
 			this.Text = "Zalgo";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ZalgoService_FormClosing);
 			this.Load += new System.EventHandler(this.ZalgoService_Load);
+			this.Shown += new System.EventHandler(this.ZalgoService_Shown);
 			this.Resize += new System.EventHandler(this.ZalgoService_Resize);
 			((System.ComponentModel.ISupportInitialize)(this._densityNumeric)).EndInit();
 			this.ResumeLayout(false);

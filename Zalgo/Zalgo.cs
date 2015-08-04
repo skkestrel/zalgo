@@ -162,7 +162,7 @@ namespace Zalgo
 		private void ZalgoService_Resize(object sender, EventArgs e)
 		{
 			_trayIcon.BalloonTipTitle = "Zalgo";
-			_trayIcon.BalloonTipText = "Zalgo will run in the background.";
+			_trayIcon.BalloonTipText = "Zalgo will run in the background. Status: " + (_enable ? "Enabled" : "Disabled");
 
 			if (WindowState == FormWindowState.Minimized)
 			{
@@ -180,6 +180,11 @@ namespace Zalgo
 		{
 			Show();
 			WindowState = FormWindowState.Normal;
+		}
+
+		private void ZalgoService_Shown(object sender, EventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
 		}
 	}
 }
