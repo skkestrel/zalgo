@@ -61,7 +61,7 @@ namespace Zalgo
 		private IntPtr _hookHandle;
 		private Random _random = new Random();
 		private KeyboardHook _keyboardHook = new KeyboardHook();
-		private bool _enable = true;
+		private bool _enable = false;
 
 		public ZalgoService()
 		{
@@ -86,7 +86,8 @@ namespace Zalgo
 					User32.KBDLLHOOKSTRUCT kb = Marshal.PtrToStructure<User32.KBDLLHOOKSTRUCT>(lparam);
 					if ((kb.flags & User32.KBDLLHOOKSTRUCTFlags.LLKHF_INJECTED) == 0 &&
 						!IgnoredScanCodes.Contains(kb.scanCode) &&
-						ModifierKeys == 0)
+						(ModifierKeys & Keys.Control) == 0 &&
+						(ModifierKeys & Keys.Alt) == 0)
 					{
 #if DEBUG
 						Console.WriteLine(kb.scanCode);
@@ -150,7 +151,7 @@ namespace Zalgo
 			_hookHandle = User32.SetWindowsHookEx(User32.HookType.WH_KEYBOARD_LL, _llKeyboardProc, IntPtr.Zero, 0); // (uint) Thread.CurrentThread.ManagedThreadId);
 			_keyboardHook.KeyPressed += Hook_KeyPressed;
 			_keyboardHook.RegisterHotKey(Zalgo.ModifierKeys.Control | Zalgo.ModifierKeys.Win, Keys.Z);
-			_trayIcon.Icon = Properties.Resources.EnabledIcon;
+			_trayIcon.Icon = Properties.Resources.DisabledIcon;
 		}
 
 		private void ZalgoService_FormClosing(object sender, FormClosingEventArgs e)

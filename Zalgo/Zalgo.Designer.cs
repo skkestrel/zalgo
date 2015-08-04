@@ -103,9 +103,9 @@
 			this._enabledLabel.AutoSize = true;
 			this._enabledLabel.Location = new System.Drawing.Point(167, 9);
 			this._enabledLabel.Name = "_enabledLabel";
-			this._enabledLabel.Size = new System.Drawing.Size(46, 13);
+			this._enabledLabel.Size = new System.Drawing.Size(48, 13);
 			this._enabledLabel.TabIndex = 4;
-			this._enabledLabel.Text = "Enabled";
+			this._enabledLabel.Text = "Disabled";
 			// 
 			// ZalgoService
 			// 
